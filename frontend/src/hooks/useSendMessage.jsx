@@ -5,11 +5,12 @@ import toast from 'react-hot-toast';
 const useSendMessage = () => {
     const [loading, setLoading] = useState(false);
     const {messages, setMessages, selectedConversation} = useConversation();
-
+    const backendUrl = import.meta.env.VITE_BACKEND_URL
+    
     const sendMessage = async (message) => {
         setLoading(true)
         try {
-            const response = await fetch(`http://localhost:5000/api/messages/send/${selectedConversation._id}`,{
+            const response = await fetch(`${backendUrl}/api/messages/send/${selectedConversation._id}`,{
                 method: "POST",
                 headers: {
                     "Content-Type":"application/json"

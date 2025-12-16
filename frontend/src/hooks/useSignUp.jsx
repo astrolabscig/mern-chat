@@ -6,6 +6,7 @@ import { useAuthContext } from "../context/AuthContext";
 const useSignUp = () => {
     const [loading, setLoading] = useState(false);
     const { setAuthUser } = useAuthContext()
+    const backendUrl = import.meta.env.VITE_BACKEND_URL
 
     const signup = async({fullname, username, password, confirmPassword, gender}) => {
         const success = handleInputErrors({fullname, username, password, confirmPassword, gender});
@@ -13,7 +14,7 @@ const useSignUp = () => {
 
         setLoading(true);
         try {
-            const response = await fetch("http://localhost:5000/api/auth/signup", {
+            const response = await fetch(`${backendUrl}/api/auth/signup`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json"},
                 body: JSON.stringify({fullname, username, password, confirmPassword, gender}),
