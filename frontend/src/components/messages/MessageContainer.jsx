@@ -13,17 +13,42 @@ const MessageContainer = () => {
     }, [setSelectedConversation])
     
 	return (
-		<div className='md:min-w-[450px] flex flex-col'>
-            {!selectedConversation ? <NoChatSelected /> : ( 
-            <>
-				{/* Header */}
-				<div className='bg-slate-500 px-4 py-2 mb-2'>
-					<span className='label-text'>To:</span> <span className='text-gray-900 font-bold'>{selectedConversation.fullname}</span>
+		// <div className='md:min-w-[450px] overflow-x-scroll flex flex-col'>
+        //     {!selectedConversation ? <NoChatSelected /> : ( 
+        //     <div>
+		// 		{/* Header */}
+		// 		<div className='bg-slate-500 px-4 py-2 mb-2'>
+		// 			<span className='label-text'>To:</span> <span className='text-white border-2 border-blue-500 rounded-full px-2 font-bold'>{selectedConversation.fullname}</span>
+		// 		</div>
+		// 		<Messages />
+		// 		<MessageInput />
+		// 	</div>
+        //     )}
+		// </div>
+		<div className='flex flex-col w-full md:min-w-[450px] h-full'>
+			{!selectedConversation ? (
+				<NoChatSelected />
+			) : (
+				<>
+				{/* Header: Fixed height, no shrinking */}
+				<div className='bg-slate-500 px-4 py-2 flex items-center gap-2 flex-none'>
+					<span className='label-text text-gray-200'>To:</span>{" "}
+					<span className='text-white border-2 border-blue-400 rounded-full px-3 py-0.5 text-sm font-bold'>
+					{selectedConversation.fullname}
+					</span>
 				</div>
-				<Messages />
-				<MessageInput />
-			</>
-            )}
+
+				{/* Messages Area: This is the only part that should scroll */}
+				<div className='flex-1 overflow-y-auto overflow-x-hidden px-4'>
+					<Messages />
+				</div>
+
+				{/* Input Area: Fixed at the bottom */}
+				<div className='p-4 flex-none'>
+					<MessageInput />
+				</div>
+				</>
+			)}
 		</div>
 	);
 };

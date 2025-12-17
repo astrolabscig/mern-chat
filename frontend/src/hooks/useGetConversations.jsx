@@ -10,11 +10,17 @@ const useGetConversations = () => {
         const getConversations = async () => {
             setLoading(true);
             try {
-                const response = await fetch(`${backendUrl}/api/users`);
+                const response = await fetch(`${backendUrl}/api/users`, {
+                    method: "GET",
+                    headers: { "Content-Type": "application/json"},
+                    credentials: 'include' 
+                });
                 const data = await response.json();
+                console.log(data)
                 if (data.error){
                     throw new Error(data.error);
                 }
+
                 setConversations(data);
             } catch (error) {
                 toast.error(error.message);
@@ -24,7 +30,7 @@ const useGetConversations = () => {
         };
 
         getConversations();
-    }, []);
+    }, [setConversations]);
 
   return { loading, conversations }
 }

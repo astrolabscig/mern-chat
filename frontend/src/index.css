@@ -7,7 +7,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: "Poppins", serif, Arial, Helvetica, sans-serif
 }
 
 
@@ -36,6 +36,13 @@ body {
 	transform: translate3d(0, 0, 0);
 	backface-visibility: hidden;
 	perspective: 1000px;
+}
+
+.bg {
+	background-color: rgb(193, 191, 191);
+}
+.text-prime {
+	color: rgb(247, 247, 247);
 }
 
 @keyframes shake {
